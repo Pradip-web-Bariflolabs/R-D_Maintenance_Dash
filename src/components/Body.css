@@ -1,7 +1,12 @@
 /* Body.css */
+.blurred {
+  filter: blur(2px);
+  opacity: 0.8;
+}
 
-/* Styling for the popup */
 .popup {
+  height: 200px;
+  width: 200px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -10,27 +15,43 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
 }
 
 .popup-content {
   text-align: center;
+  z-index: 1000;
 }
 
-.popup-content h2 {
-  margin-top: 0;
-}
+
 
 .popup-content button {
+
   margin-top: 20px;
   padding: 10px 20px;
   border: none;
-  background-color: #333;
-  color: white;
+  background-color: white;
+  color:black;
   cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.popup-content button:hover {
+ button:hover {
   background-color: #555;
+  transform: scale(1.05);
+  border-radius: 8px;
+}
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* Styling for the buttons and overlay */
@@ -38,6 +59,8 @@
   position: relative;
   overflow: hidden;
   transition: background-color 0.3s ease;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn-overlay .overlay {
@@ -55,7 +78,16 @@
   opacity: 1;
 }
 
+.btn-overlay:hover {
+  background-color: #444;
+  transform: translateY(-3px);
+}
+
 .btn-text {
   position: relative;
   z-index: 1;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
