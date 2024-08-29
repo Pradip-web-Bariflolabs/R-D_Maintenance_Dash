@@ -1,0 +1,13 @@
+.navbar {
+    min-width: 800px; 
+    width: 100%; 
+  }
+  
+  @media (max-width: 576px) {
+    .navbar {
+      height: 4rem; 
+    }
+    .username-button{
+        font-size: 16px;
+    }
+  }
