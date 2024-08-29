@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './Body.css'; // Make sure you have the necessary styles in this file
+import './LandingPage.css'; 
+import { useNavigate } from 'react-router-dom';
 
 // Function to get random color
 function getRandomColor() {
@@ -11,8 +12,11 @@ function getRandomColor() {
   return color;
 }
 
-function Body() {
+function LandingPage() {
   const [activePopup, setActivePopup] = useState(null);
+  const [deviceData, setDeviceData] = useState(''); 
+  const navigate = useNavigate();
+
 
   const togglePopup = (popupName) => {
     if (activePopup === popupName) {
@@ -20,6 +24,15 @@ function Body() {
     } else {
       setActivePopup(popupName); 
     }
+  };
+  
+
+  const handleInputChange = (e) => {
+    setDeviceData(e.target.value); 
+  };
+
+  const handleClick = () => {
+     navigate('#', { state: { data: deviceData } }); 
   };
 
   return (
@@ -99,10 +112,24 @@ function Body() {
           <button className="close-btn" onClick={() => togglePopup(null)}>X</button>
           <div className="popup-content">
             <h4>Node value:</h4>
-            <input type="text" class="form-control" placeholder="First name"/>
+            <input 
+              type="text" 
+              className="form-control" 
+              placeholder="Topic of the device"
+              value={deviceData} 
+              onChange={handleInputChange} 
+            />
+            <button 
+              type="button" 
+              className="btn btn-success" 
+              onClick={handleClick}
+              style={{backgroundColor:"green",color:"white"}}
+            >
+              Submit
+            </button>
           </div>
         </div>
-      )}
+      )} 
 
       {activePopup === 'rpm' && (
         <div className="popup">
@@ -135,4 +162,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default LandingPage;

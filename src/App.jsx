@@ -1,7 +1,9 @@
 import './App.css';
 import SideBar from './components/SideBar';
-import Body from './components/Body';
+import LandingPage from './components/LandingPage';
 import Navbar from './components/Navbar';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -9,7 +11,9 @@ function App() {
       <Navbar/>
       <div style={{display:"flex"}}>
         <SideBar/>
-        <Body/>
+        <Router> 
+          <LandingPage />
+        </Router>
       </div>
       
     </div>
