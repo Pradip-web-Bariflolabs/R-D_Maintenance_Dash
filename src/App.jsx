@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
   return (
+   <>
     <div>
       <Navbar/>
       <div style={{display:"flex"}}>
@@ -15,8 +16,8 @@ function App() {
           <LandingPage />
         </Router>
       </div>
-      
     </div>
+   </>
   );
 }
 
