@@ -1,139 +1,147 @@
-import React, { useState } from 'react';
-import './LandingPage.css'; 
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo, useRef, useEffect } from "react";
+import "./LandingPage.css";
+import { useNavigate } from "react-router-dom";
 
 // Function to get random color
 function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
+  const letters = "0123456789ABCDEF";
+  let color = "#";
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
 
-function LandingPage() {
+const LandingPage = () => {
   const [activePopup, setActivePopup] = useState(null);
-  const [deviceData, setDeviceData] = useState(''); 
+  const deviceData = useRef(null);
+  const colors = useMemo(
+    () => ({
+      lora: getRandomColor(),
+      rpm: getRandomColor(),
+      smps: getRandomColor(),
+      proximity: getRandomColor(),
+    }),
+    []
+  );
   const navigate = useNavigate();
 
+  useEffect(() => {
+    console.log("api called ");
+  }, []);
 
   const togglePopup = (popupName) => {
     if (activePopup === popupName) {
-      setActivePopup(null); 
+      setActivePopup(null);
     } else {
-      setActivePopup(popupName); 
+      setActivePopup(popupName);
     }
-  };
-  
-
-  const handleInputChange = (e) => {
-    setDeviceData(e.target.value); 
   };
 
   const handleClick = () => {
-     navigate('#', { state: { data: deviceData } }); 
+    navigate("/TestingPhase", { state: { data: deviceData.current?.value } });
   };
 
   return (
     <div>
-      <div id="btn-grp" className={`d-flex ${activePopup ? 'blurred' : ''}`}>
+      <div id="btn-grp" className={`d-flex ${activePopup ? "blurred" : ""}`}>
         <div className={`flex-grow-1 p-5`}>
-          <div className='bg-light text-center text-dark border border-dark rounded'>
+          <div className="bg-light text-center text-dark border border-dark rounded">
             <h3>COMPONENT</h3>
           </div>
-          <div className="btn-grp d-flex gap-3 flex-wrap p-5 ml-40px">
-            <button 
-              type="button" 
-              className='btn text-white btn-overlay'
+          <div className=" d-flex gap-3 flex-wrap p-5 ml-40px">
+            <button
+              className="btn text-white btn-overlay"
               style={{
                 height: "250px",
                 width: "250px",
-                backgroundColor: getRandomColor(),
-                fontSize: "40px"
+                backgroundColor: colors.lora,
+                fontSize: "40px",
               }}
-              onClick={() => togglePopup('lora')}
+              onClick={() => togglePopup("lora")}
             >
               <span className="btn-text">LORA</span>
               <div className="overlay"></div>
             </button>
 
-            <button 
-              type="button" 
-              className='btn text-white btn-overlay'
+            <button
+              type="button"
+              className="btn text-white btn-overlay"
               style={{
                 height: "250px",
                 width: "250px",
-                backgroundColor: getRandomColor(),
-                fontSize: "40px"
+                backgroundColor: colors.rpm,
+                fontSize: "40px",
               }}
-              onClick={() => togglePopup('rpm')}
+              onClick={() => togglePopup("rpm")}
             >
               <span className="btn-text">rpm ENCODER</span>
               <div className="overlay"></div>
             </button>
 
-            <button 
-              type="button" 
-              className='btn text-white btn-overlay'
+            <button
+              type="button"
+              className="btn text-white btn-overlay"
               style={{
                 height: "250px",
                 width: "250px",
-                backgroundColor: getRandomColor(),
-                fontSize: "40px"
+                backgroundColor: colors.smps,
+                fontSize: "40px",
               }}
-              onClick={() => togglePopup('smps')}
+              onClick={() => togglePopup("smps")}
             >
               <span className="btn-text">SMPS</span>
               <div className="overlay"></div>
             </button>
 
-            <button 
-              type="button" 
-              className='btn text-white btn-overlay'
+            <button
+              type="button"
+              className="btn text-white btn-overlay"
               style={{
                 height: "250px",
                 width: "250px",
-                backgroundColor: getRandomColor(),
-                fontSize: "40px"
+                backgroundColor: colors.proximity,
+                fontSize: "40px",
               }}
-              onClick={() => togglePopup('proximity')}
+              onClick={() => togglePopup("proximity")}
             >
               <span className="btn-text">Proximity Sensor</span>
-              <div className="overlay"></div>
             </button>
           </div>
         </div>
       </div>
 
       {/* Popup Content */}
-      {activePopup === 'lora' && (
+      {activePopup === "lora" && (
         <div className="popup">
-          <button className="close-btn" onClick={() => togglePopup(null)}>X</button>
+          <button className="close-btn" onClick={() => togglePopup(null)}>
+            X
+          </button>
           <div className="popup-content">
             <h4>Node value:</h4>
-            <input 
-              type="text" 
-              className="form-control" 
+            <input
+              type="text"
+              className="form-control"
               placeholder="Topic of the device"
-              value={deviceData} 
-              onChange={handleInputChange} 
+              value={deviceData.current?.value}
             />
-            <button 
-              type="button" 
-              className="btn btn-success" 
+            <button
+              type="button"
+              className="btn btn-success"
               onClick={handleClick}
-              style={{backgroundColor:"green",color:"white"}}
+              style={{ backgroundColor: "green", color: "white" }}
             >
               Submit
             </button>
           </div>
         </div>
-      )} 
+      )}
 
-      {activePopup === 'rpm' && (
+      {activePopup === "rpm" && (
         <div className="popup">
-          <button className="close-btn" onClick={() => togglePopup(null)}>X</button>
+          <button className="close-btn" onClick={() => togglePopup(null)}>
+            X
+          </button>
           <div className="popup-content">
             <button>in rpm</button>
             <button>out rpm</button>
@@ -141,18 +149,22 @@ function LandingPage() {
         </div>
       )}
 
-      {activePopup === 'smps' && (
+      {activePopup === "smps" && (
         <div className="popup">
-          <button className="close-btn" onClick={() => togglePopup(null)}>X</button>
+          <button className="close-btn" onClick={() => togglePopup(null)}>
+            X
+          </button>
           <div className="popup-content">
             <h2>SMPS Popup Content</h2>
           </div>
         </div>
       )}
 
-      {activePopup === 'proximity' && (
+      {activePopup === "proximity" && (
         <div className="popup">
-          <button className="close-btn" onClick={() => togglePopup(null)}>X</button>
+          <button className="close-btn" onClick={() => togglePopup(null)}>
+            X
+          </button>
           <div className="popup-content">
             <h2>Proximity Sensor Popup Content</h2>
           </div>
@@ -160,6 +172,6 @@ function LandingPage() {
       )}
     </div>
   );
-}
+};
 
 export default LandingPage;
