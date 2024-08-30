@@ -5,9 +5,10 @@
   @media (max-width: 576px) {
     .navbar {
       height: 4rem; 
+      min-width: 400PX;
     }
     .username-button{
-        font-size: 10px;
+        font-size: 16px;
         font-weight: 400;
     }
     .collapse{
