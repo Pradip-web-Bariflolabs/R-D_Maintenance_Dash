@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   // State to store form data
   const [loginData, setLoginData] = useState({
     identifier: "", // This should be 'username' if you're using 'username' in the input field
@@ -30,7 +32,9 @@ function LoginPage() {
 
       // Log response for debugging purposes
       console.log(response);
-
+if(response.status==200){
+  navigate("/maintenance/",{state:{data:response.data.id}})
+}
       // Reset the form fields after successful submission
       setLoginData({
         identifier: "",
@@ -38,7 +42,7 @@ function LoginPage() {
       });
 
       // You can add any additional actions here, like showing a success message
-      alert("Form submitted successfully!");
+      
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("There was an error submitting the form. Please try again.");

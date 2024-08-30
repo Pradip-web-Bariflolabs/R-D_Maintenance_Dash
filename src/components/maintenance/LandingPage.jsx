@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import "./LandingPage.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
+import axios from "axios";
 
 // Function to get random color
 function getRandomColor() {
@@ -25,6 +26,10 @@ const LandingPage = () => {
     []
   );
   const navigate = useNavigate();
+  const location = useLocation();
+  const {state}=location;
+  console.log(state?.data);
+  
 
   useEffect(() => {
     console.log("api called ");
@@ -38,8 +43,19 @@ const LandingPage = () => {
     }
   };
 
-  const handleClick = () => {
-    navigate("/maintenance/loratesting/", { state: { data: deviceData.current?.value } });
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const data={
+      "topic":deviceData.current?.value,
+  
+    }
+    const response=await axios.post(`${process.env.REACT_APP_IP}/post_node_id/${state?.data}/`,data);
+    console.log(response);
+    if(response.status==201){
+      navigate("/maintenance/loratesting/", { state: { data: deviceData.current?.value } });
+    }
+  
   };
 
   return (
@@ -118,22 +134,25 @@ const LandingPage = () => {
           <i class="bi bi-x-lg"></i>
           </button>
           <div className="popup-content">
-            <h4>Node value:</h4>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="Topic of the device"
-              ref={deviceData}
-            />
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={handleClick}
-              style={{ backgroundColor: "green", color: "white" }}
-            >
-              Submit
-            </button>
-          </div>
+  <h4>Node value:</h4>
+  <form onSubmit={handleSubmit}>
+    <input
+      type="number"
+      className="form-control"
+      placeholder="Topic of the device"
+      ref={deviceData}
+      required
+    />
+    <button
+      type="submit"
+      className="btn btn-success"
+      style={{ backgroundColor: "green", color: "white" }}
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
         </div>
       )}
 
