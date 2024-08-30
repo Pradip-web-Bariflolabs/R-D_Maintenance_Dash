@@ -2,13 +2,19 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Chart from "../Chart"
 import './LoraTesting.css'
-
+import { useLocation } from 'react-router-dom';
 const LoraTesting = () => {
+  const location =useLocation();
+  const {state}=location;
+  const topicid=state?.data;
+  console.log(topicid);
+  
+  
   return (
     <>
       {/* Device ID centered at the top */}
       <div className="d-flex justify-content-center">
-        <p className="border border-primary border-3 mt-4 p-2 rounded fw-bold ">DeviceId: 123456789</p>
+        <p className="border border-primary border-3 mt-4 p-2 rounded fw-bold ">DeviceId: {topicid}</p>
       </div>
 
       <div className="container-fluid vh-100">
