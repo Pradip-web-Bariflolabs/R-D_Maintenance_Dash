@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../assets/css/NavBar.css'; 
 
 function Navbar() {
-  const [isConnected, setIsConnected] = useState(true);
+  const [isConnected, setIsConnected] = useState(false);
   
   const dynamicImage = isConnected ? 
     <i class="bi bi-check2-circle " style = {{color:"green"}}></i>   : <i class="bi bi-x-circle" style = {{color:"red"}}></i>;
@@ -17,7 +17,7 @@ function Navbar() {
           </div> */}
 
           <div className=" navbar-collapse justify-content-end">
-            <div className="d-flex flex-column justify-content-end align-items-end" style={{ right: '20px', top: '10px' }}>
+            <div className="d-flex flex-column justify-content-end align-items-end" >
               <button
                 className="p-0 mb-0 username-button"
                 style={{
