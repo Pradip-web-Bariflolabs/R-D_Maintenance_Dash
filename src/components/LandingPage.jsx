@@ -115,7 +115,7 @@ const LandingPage = () => {
       {activePopup === "lora" && (
         <div className="popup">
           <button className="close-btn" onClick={() => togglePopup(null)}>
-            X
+          <i class="bi bi-x-lg"></i>
           </button>
           <div className="popup-content">
             <h4>Node value:</h4>
@@ -140,7 +140,7 @@ const LandingPage = () => {
       {activePopup === "rpm" && (
         <div className="popup">
           <button className="close-btn" onClick={() => togglePopup(null)}>
-            X
+          <i class="bi bi-x-lg"></i>
           </button>
           <div className="popup-content">
             <button>in rpm</button>
@@ -152,7 +152,7 @@ const LandingPage = () => {
       {activePopup === "smps" && (
         <div className="popup">
           <button className="close-btn" onClick={() => togglePopup(null)}>
-            X
+          <i class="bi bi-x-lg"></i>
           </button>
           <div className="popup-content">
             <h2>SMPS Popup Content</h2>
@@ -163,7 +163,7 @@ const LandingPage = () => {
       {activePopup === "proximity" && (
         <div className="popup">
           <button className="close-btn" onClick={() => togglePopup(null)}>
-            X
+          <i class="bi bi-x-lg"></i>
           </button>
           <div className="popup-content">
             <h2>Proximity Sensor Popup Content</h2>
