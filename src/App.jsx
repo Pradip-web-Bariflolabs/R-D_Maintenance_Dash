@@ -1,23 +1,18 @@
 import "./App.css";
-import SideBar from "./components/SideBar";
-import LandingPage from "./components/LandingPage";
-import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./components/Login/LoginPage";
+import MaintenanceMainPage from "./components/maintenance/MaintenanceMainPage";
 
 function App() {
   return (
     <>
-      <div>
-        <Navbar />
-        <div style={{ display: "flex" }}>
-          <SideBar />
-          <Router>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-            </Routes>
-          </Router>
-        </div>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+
+          <Route path="/maintenance" element={<MaintenanceMainPage />} />
+        </Routes>
+      </Router>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Chart from '../Chart';
+import Chart from "../Chart"
 import './LoraTesting.css'
 
 const LoraTesting = () => {
