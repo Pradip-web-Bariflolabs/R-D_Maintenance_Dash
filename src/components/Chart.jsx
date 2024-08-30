@@ -27,12 +27,12 @@ const Chart = () => {
   return (
       <>
       {/* Left side with the chart */}
-          <div style={{ width: '80%' }}>
+          <div style={{ width: '90%' }}>
             <ReactApexChart
               options={areaChart}
               series={areaChart.series}
               type="area"
-              height={300}
+              height={400}
             />
           </div>
    
