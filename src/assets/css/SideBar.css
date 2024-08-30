@@ -31,6 +31,19 @@
     background-color: transparent;
     border: none;
 }
+.toggle-btn:hover{
+    background-color: transparent;
+}
+.float-div {
+    position: fixed;
+    top: 60px; 
+    left: 20px;  
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 10px;
+  }
 
 @media (min-width: 769px) {
     .side-bar {
@@ -45,7 +58,7 @@
 
 @media (max-width: 768px) {
     .side-bar {
-        display: block; 
+        display: none; 
     }
 
     .toggle-btn {

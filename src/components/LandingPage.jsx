@@ -43,10 +43,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div>
+    <div className="container-fluid">
       <div id="btn-grp" className={`d-flex ${activePopup ? "blurred" : ""}`}>
-        <div className={`flex-grow-1 p-5`}>
-          <div className="bg-light text-center text-dark border border-dark rounded">
+        <div className={`flex-grow-1 p-2 `}>
+          <div className="bg-light text-center text-dark border border-dark rounded ml-lg-0 ml-md-0">
             <h3>COMPONENT</h3>
           </div>
           <div className=" d-flex gap-3 flex-wrap p-5 ml-40px">
