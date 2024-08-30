@@ -39,7 +39,7 @@ const LandingPage = () => {
   };
 
   const handleClick = () => {
-    navigate("/TestingPhase", { state: { data: deviceData.current?.value } });
+    navigate("/maintenance/loratesting/", { state: { data: deviceData.current?.value } });
   };
 
   return (
@@ -120,10 +120,10 @@ const LandingPage = () => {
           <div className="popup-content">
             <h4>Node value:</h4>
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="Topic of the device"
-              value={deviceData.current?.value}
+              ref={deviceData}
             />
             <button
               type="button"
