@@ -26,7 +26,7 @@ function LoginPage() {
 
     try {
       const response = await axios.post(
-        `http://192.168.1.30:8002/login/`,
+        `http://192.168.1.37:8000/login/`,
         loginData
       ); // Added 'http://' to URL
 
